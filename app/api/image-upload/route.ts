@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
         if (!file) {
             return NextResponse.json(
                 {
-                    error: "Error in uploading file"
+                    error: "File not found"
                 },
                 {
                     status: 400
@@ -66,13 +66,16 @@ export async function POST(request: NextRequest) {
             }
         )
 
-        return NextResponse.json( { pubicId : result.public_id } , { status : 200 })
+        return NextResponse.json( { publicId : result.public_id } , { status : 200 })
 
     }
     catch (error: any) {
+
+        console.log("Error in uploading Images")
+
         return NextResponse.json(
             {
-                error: "Error in uploading file"
+                error: "Error in uploading Image"
             },
             {
                 status: 401

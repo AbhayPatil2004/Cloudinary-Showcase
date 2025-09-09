@@ -11,20 +11,42 @@
 // export default config;
 
 // tailwind.config.mjs
+// import daisyui from "daisyui";
+
+// const config = {
+//   content: [
+//     "./pages/**/*.{js,ts,jsx,tsx}",
+//     "./components/**/*.{js,ts,jsx,tsx}",
+//     "./app/**/*.{js,ts,jsx,tsx}",
+//   ],
+//   theme: {
+//     extend: {},
+//   },
+//   plugins: [daisyui], 
+//   daisyui: {
+//     themes: ["dark"], 
+//   },
+// };
+
+// export default config;
+
+
+// tailwind.config.mjs
 import daisyui from "daisyui";
 
+/** @type {import('tailwindcss').Config} */
 const config = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-    "./app/**/*.{js,ts,jsx,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {},
   },
-  plugins: [daisyui], // ✅ register DaisyUI
+  plugins: [daisyui],
   daisyui: {
-    themes: ["dark"], // ✅ configure themes here
+    themes: ["dark"], // ✅ correct way
   },
 };
 

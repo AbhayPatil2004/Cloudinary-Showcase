@@ -4,9 +4,9 @@ CREATE TABLE "public"."Video" (
     "title" TEXT NOT NULL,
     "description" TEXT,
     "publicId" TEXT NOT NULL,
-    "OriginalSize" TEXT NOT NULL,
-    "compressedSize" TEXT NOT NULL,
-    "duration" TEXT NOT NULL,
+    "OriginalSize" INT NOT NULL,
+    "compressedSize" INT NOT NULL,
+    "duration" INT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 

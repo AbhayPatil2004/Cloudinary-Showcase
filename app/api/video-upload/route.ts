@@ -34,7 +34,6 @@ export async function POST(request: NextRequest) {
         )
     }
 
-
     try {
 
         if (
@@ -77,13 +76,13 @@ export async function POST(request: NextRequest) {
 
             (resolve, reject) => {
                 const upload_stream = cloudinary.uploader.upload_stream(
-                    { 
-                        resource_type : "video" ,
-                        folder: "video-upload" ,
-                        transformation : [
-                            { quality : "auto" , fetch_format : "mp4" }
+                    {
+                        resource_type: "video",
+                        folder: "video-upload",
+                        transformation: [
+                            { quality: "auto", fetch_format: "mp4" }
                         ]
-                        
+
                     },
                     (error, result) => {
                         if (error) {
@@ -98,16 +97,22 @@ export async function POST(request: NextRequest) {
             }
         )
 
+        console.log("Video upload")
         const video = await prisma.video.create({
-            data : {
-                title ,
-                description ,
-                publicId : result.public_id ,
-                OriginalSize : originalSize ,
-                compressedSize : String(result.bytes) ,
-                duration : result.duration || 0 
+            data: {
+                title,
+                description,
+                publicId: result.public_id,
+                OriginalSize: originalSize,
+                compressedSize: String(result.bytes),
+                duration: result.duration || 0
             }
         })
+
+        return NextResponse.json(
+            { message: "Video uploaded successfully", video },
+            { status: 201 }
+        );
 
     }
     catch (error: any) {
@@ -124,7 +129,7 @@ export async function POST(request: NextRequest) {
 
         )
     }
-    finally{
+    finally {
         await prisma.$disconnect();
     }
 }

@@ -54,54 +54,26 @@ export default function Home() {
 
   return (
 
-    <div
-      style={{
-        maxWidth: "1200px", 
-        margin: "0 auto",
-        padding: "16px",
-      }}
-    >
-      <h1
-        style={{
-          fontSize: "1.5rem", 
-          fontWeight: "bold", 
-          marginBottom: "1rem", 
-        }}
-      >
-        Videos
-      </h1>
-
-      {videos.length === 0 ? (
-        <div
-          style={{
-            textAlign: "center", 
-            fontSize: "1.125rem", 
-            color: "#6B7280", 
-          }}
-        >
-          No videos available
+   <div className="container mx-auto p-4">
+          <h1 className="text-2xl font-bold mb-4">Videos</h1>
+          {videos.length === 0 ? (
+            <div className="text-center text-lg text-gray-500">
+              No videos available
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {
+                videos.map((video) => (
+                    <VideoCard
+                        key={video.id}
+                        video={{ ...video, duration: String(video.duration) }}
+                        onDownload={handelDownload}
+                    />
+                ))
+              }
+            </div>
+          )}
         </div>
-      ) : (
-        <div
-          style={{
-            display: "grid", 
-            gridTemplateColumns: "repeat(1, minmax(0, 1fr))", // grid-cols-1
-            gap: "1.5rem", 
-          }}
-        >
-          {videos.map((video) => (
-            <VideoCard
-              key={video.id}
-              video={{
-                ...video,
-                duration: String(video.duration),
-              }}
-              onDownload={handelDownload}
-            />
-          ))}
-        </div>
-      )}
-    </div>
 
   )
 }
